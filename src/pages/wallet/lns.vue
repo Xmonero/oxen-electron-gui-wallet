@@ -43,11 +43,6 @@ export default {
       // don't update the pointer to the record (else it'll update on the records page)
       let recordCopy = _.cloneDeep(record);
 
-      if (record.type === "lokinet" && record.name.endsWith(".loki")) {
-        // The UI expects no ".loki" extension
-        recordCopy.name = recordCopy.name.slice(0, -5);
-        recordCopy.value = recordCopy.value.slice(0, -5);
-      }
       this.screen = "purchase";
       // refs are not dynamic, so let the purchase tab render
       // then we can call the ref method

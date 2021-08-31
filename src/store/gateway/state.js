@@ -64,7 +64,7 @@ export default {
     i18n: "",
     sending: false
   },
-  service_node_status: {
+  masternode_status: {
     stake: {
       code: 0,
       message: "",
@@ -138,7 +138,7 @@ export default {
     connections: [],
     bans: [],
     tx_pool_backlog: [],
-    service_nodes: {
+    masternodes: {
       nodes: [],
       fetching: true
     }

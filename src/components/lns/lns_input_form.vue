@@ -2,21 +2,21 @@
   <div class="lns-input-form">
     <!-- Type -->
     <div class="col q-mt-sm">
-      <OxenField :label="$t('fieldLabels.lnsType')" :disable="updating">
+      <QueneroField :label="$t('fieldLabels.lnsType')" :disable="updating">
         <q-select
           v-model.trim="record.type"
           emit-value
           map-options
-          :options="renewing ? lokinetOptions : typeOptions"
+          :options="typeOptions"
           :disable="updating"
           borderless
           dense
         />
-      </OxenField>
+      </QueneroField>
     </div>
     <!-- Name -->
     <div class="col q-mt-sm">
-      <OxenField
+      <QueneroField
         :label="$t('fieldLabels.name')"
         :disable="disableName"
         :error="$v.record.name.$error"
@@ -31,12 +31,12 @@
           :suffix="record.type === 'session' ? '' : '.loki'"
           @blur="$v.record.name.$touch"
         />
-      </OxenField>
+      </QueneroField>
     </div>
 
     <!-- Value (Session ID, Wallet Address or .loki address) -->
     <div class="col q-mt-sm">
-      <OxenField
+      <QueneroField
         class="q-mt-md"
         :label="value_field_label"
         :error="$v.record.value.$error"
@@ -51,12 +51,12 @@
           :suffix="record.type === 'session' ? '' : '.loki'"
           @blur="$v.record.value.$touch"
         />
-      </OxenField>
+      </QueneroField>
     </div>
 
     <!-- Owner -->
     <div class="col q-mt-sm">
-      <OxenField
+      <QueneroField
         class="q-mt-md"
         :label="$t('fieldLabels.owner')"
         :error="$v.record.owner.$error"
@@ -71,12 +71,12 @@
           :disable="renewing"
           @blur="$v.record.owner.$touch"
         />
-      </OxenField>
+      </QueneroField>
     </div>
 
     <!-- Backup owner -->
     <div class="col q-mt-sm">
-      <OxenField
+      <QueneroField
         class="q-mt-md"
         :label="$t('fieldLabels.backupOwner')"
         :error="$v.record.backup_owner.$error"
@@ -91,7 +91,7 @@
           dense
           @blur="$v.record.backup_owner.$touch"
         />
-      </OxenField>
+      </QueneroField>
     </div>
     <div class="buttons">
       <q-btn
@@ -115,17 +115,15 @@ import { required, maxLength } from "vuelidate/lib/validators";
 import {
   address,
   session_id,
-  lokinet_address,
-  lokinet_name,
   session_name
 } from "src/validators/common";
-import OxenField from "components/oxen_field";
+import QueneroField from "components/quenero_field";
 import WalletPassword from "src/mixins/wallet_password";
 
 export default {
   name: "LNSInputForm",
   components: {
-    OxenField
+    QueneroField
   },
   mixins: [WalletPassword],
   props: {
@@ -167,25 +165,10 @@ export default {
     let sessionOptions = [
       { label: this.$t("strings.lns.sessionID"), value: "session" }
     ];
-    let lokinetOptions = [
-      { label: this.$t("strings.lns.lokinetName1Year"), value: "lokinet_1y" },
-      {
-        label: this.$t("strings.lns.lokinetNameXYears", { years: 2 }),
-        value: "lokinet_2y"
-      },
-      {
-        label: this.$t("strings.lns.lokinetNameXYears", { years: 5 }),
-        value: "lokinet_5y"
-      },
-      {
-        label: this.$t("strings.lns.lokinetNameXYears", { years: 10 }),
-        value: "lokinet_10y"
-      }
-    ];
-    let typeOptions = [...sessionOptions, ...lokinetOptions];
+    
+    let typeOptions = [...sessionOptions];
 
     const initialRecord = {
-      // Lokinet 1 year is valid on renew or purchase
       type: typeOptions[1].value,
       name: "",
       value: "",
@@ -194,8 +177,7 @@ export default {
     };
     return {
       record: { ...initialRecord },
-      typeOptions,
-      lokinetOptions
+      typeOptions
     };
   },
   computed: mapState({
@@ -207,8 +189,6 @@ export default {
     value_field_label() {
       if (this.record.type === "session") {
         return this.$t("fieldLabels.sessionId");
-      } else {
-        return this.$t("fieldLabels.lokinetFullAddress");
       }
     },
     can_update() {
@@ -231,8 +211,6 @@ export default {
     value_placeholder() {
       if (this.record.type === "session") {
         return this.$t("placeholders.sessionId");
-      } else {
-        return this.$t("placeholders.lokinetFullAddress");
       }
     },
     owner_placeholder() {
@@ -355,9 +333,6 @@ export default {
           const _value = value.toLowerCase();
           if (this.record.type === "session") {
             return session_name(_value);
-          } else {
-            // shortened lokinet LNS name
-            return lokinet_name(_value);
           }
         }
       },
@@ -372,9 +347,6 @@ export default {
           const _value = value.toLowerCase();
           if (this.record.type === "session") {
             return session_id(_value);
-          } else {
-            // full lokinet address
-            return lokinet_address(_value);
           }
         }
       },

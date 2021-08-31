@@ -137,8 +137,8 @@ export class WalletRPC {
 
         const rpcExecutable =
           process.platform === "win32"
-            ? "oxen-wallet-rpc.exe"
-            : "oxen-wallet-rpc";
+            ? "quenero-wallet-rpc.exe"
+            : "quenero-wallet-rpc";
         // eslint-disable-next-line no-undef
         const rpcPath = path.join(__ryo_bin, rpcExecutable);
 
@@ -146,7 +146,7 @@ export class WalletRPC {
         if (!fs.existsSync(rpcPath)) {
           reject(
             new Error(
-              "Failed to find Oxen Wallet RPC. Please make sure you anti-virus has not removed it."
+              "Failed to find Quenero Wallet RPC. Please make sure you anti-virus has not removed it."
             )
           );
           return;
@@ -286,7 +286,7 @@ export class WalletRPC {
         break;
 
       case "restore_view_wallet":
-        // TODO: Decide if we want this for Oxen
+        // TODO: Decide if we want this for Quenero
         this.restoreViewWallet(
           params.name,
           params.password,
@@ -320,18 +320,18 @@ export class WalletRPC {
         );
         break;
 
-      case "register_service_node":
+      case "register_masternode":
         this.registerSnode(params.password, params.string);
         break;
 
-      case "update_service_node_list":
+      case "update_masternode_list":
         this.updateServiceNodeList();
         break;
 
       case "unlock_stake":
         this.unlockStake(
           params.password,
-          params.service_node_key,
+          params.masternode_key,
           params.confirmed || false
         );
         break;
@@ -1077,19 +1077,8 @@ export class WalletRPC {
     }
   }
 
-  /*
-  Renews an LNS (Lokinet) mapping, since they can expire
-  type can be:
-  lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
-  */
   lnsRenewMapping(password, type, name) {
     let _name = name.trim().toLowerCase();
-
-    // the RPC accepts names with the .loki already appeneded only
-    // can be lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
-    if (type.startsWith("lokinet")) {
-      _name = _name + ".loki";
-    }
 
     crypto.pbkdf2(
       password,
@@ -1153,10 +1142,6 @@ export class WalletRPC {
   */
   async decryptLNSRecord(type, name) {
     let _type = type;
-    // type can initially be "lokinet_1y" etc. on a purchase
-    if (type.startsWith("lokinet")) {
-      _type = "lokinet";
-    }
     try {
       const record = await this.getLNSRecord(_type, name);
       if (!record) return null;
@@ -1199,8 +1184,8 @@ export class WalletRPC {
   Get a LNS record associated with the given name
   */
   async getLNSRecord(type, name) {
-    // We currently only support session and lokinet
-    const types = ["session", "lokinet"];
+    // We currently only support session
+    const types = ["session"];
     if (!types.includes(type)) return null;
 
     if (!name || name.trim().length === 0) return null;
@@ -1208,9 +1193,6 @@ export class WalletRPC {
     const lowerCaseName = name.toLowerCase();
 
     let fullName = lowerCaseName;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
-    }
 
     const nameHash = await this.hashLNSName(type, lowerCaseName);
     if (!nameHash) return null;
@@ -1236,9 +1218,6 @@ export class WalletRPC {
     if (!type || !name) return null;
 
     let fullName = name;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
-    }
 
     try {
       const data = await this.sendRPC("lns_hash_name", {
@@ -1264,9 +1243,6 @@ export class WalletRPC {
     if (!type || !name || !encrypted_value) return null;
 
     let fullName = name;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
-    }
 
     try {
       const data = await this.sendRPC("lns_decrypt_value", {
@@ -1387,7 +1363,7 @@ export class WalletRPC {
     }
   }
 
-  stake(password, amount, service_node_key, destination) {
+  stake(password, amount, masternode_key, destination) {
     crypto.pbkdf2(
       password,
       this.auth[2],
@@ -1421,7 +1397,7 @@ export class WalletRPC {
         this.sendRPC("stake", {
           amount,
           destination,
-          service_node_key
+          masternode_key
         }).then(data => {
           if (data.hasOwnProperty("error")) {
             let error =
@@ -1452,7 +1428,7 @@ export class WalletRPC {
     );
   }
 
-  registerSnode(password, register_service_node_str) {
+  registerSnode(password, register_masternode_str) {
     crypto.pbkdf2(
       password,
       this.auth[2],
@@ -1482,8 +1458,8 @@ export class WalletRPC {
           return;
         }
 
-        this.sendRPC("register_service_node", {
-          register_service_node_str
+        this.sendRPC("register_masternode", {
+          register_masternode_str
         }).then(data => {
           if (data.hasOwnProperty("error")) {
             const error =
@@ -1518,7 +1494,7 @@ export class WalletRPC {
     this.backend.daemon.updateServiceNodes();
   }
 
-  unlockStake(password, service_node_key, confirmed = false) {
+  unlockStake(password, masternode_key, confirmed = false) {
     const sendError = (message, i18n = true) => {
       const key = i18n ? "i18n" : "message";
       this.sendGateway("set_snode_status", {
@@ -1550,7 +1526,7 @@ export class WalletRPC {
 
         const sendRPC = path => {
           return this.sendRPC(path, {
-            service_node_key
+            masternode_key
           }).then(data => {
             if (data.hasOwnProperty("error")) {
               const error =
@@ -1682,7 +1658,7 @@ export class WalletRPC {
 
   // prepares params and provides a "confirm" popup to allow the user to check
   // send address and tx fees before sending
-  // isSweepAll refers to if it's the sweep from service nodes page
+  // isSweepAll refers to if it's the sweep from masternodes page
   transfer(password, amount, address, priority, isSweepAll) {
     const cryptoCallback = (err, password_hash) => {
       if (err) {
@@ -1789,12 +1765,6 @@ export class WalletRPC {
     const _owner = owner.trim() === "" ? null : owner;
     const backup_owner = backupOwner.trim() === "" ? null : backupOwner;
 
-    // the RPC accepts names with the .loki already appeneded only
-    // can be lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
-    if (type.startsWith("lokinet")) {
-      _name = _name + ".loki";
-      value = value + ".loki";
-    }
 
     crypto.pbkdf2(
       password,
@@ -1861,12 +1831,6 @@ export class WalletRPC {
     const _owner = owner.trim() === "" ? null : owner;
     const backup_owner = backupOwner.trim() === "" ? null : backupOwner;
 
-    // updated records have type "lokinet" or "session"
-    // UI passes the values without the extension
-    if (type === "lokinet") {
-      _name = _name + ".loki";
-      value = value + ".loki";
-    }
 
     crypto.pbkdf2(
       password,

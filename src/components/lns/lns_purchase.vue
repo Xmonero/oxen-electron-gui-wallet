@@ -9,23 +9,7 @@
         <table>
           <tr>
             <td>{{ $t("strings.lns.sessionID") }}:</td>
-            <td>15 OXEN</td>
-          </tr>
-          <tr>
-            <td>{{ $t("strings.lns.lokinetName1Year") }}:</td>
-            <td>15 OXEN</td>
-          </tr>
-          <tr>
-            <td>{{ $t("strings.lns.lokinetNameXYears", { years: 2 }) }}:</td>
-            <td>30 OXEN</td>
-          </tr>
-          <tr>
-            <td>{{ $t("strings.lns.lokinetNameXYears", { years: 5 }) }}:</td>
-            <td>60 OXEN</td>
-          </tr>
-          <tr>
-            <td>{{ $t("strings.lns.lokinetNameXYears", { years: 10 }) }}:</td>
-            <td>90 OXEN</td>
+            <td>15 QMR</td>
           </tr>
         </table>
       </div>
@@ -55,12 +39,12 @@ export default {
 .lns-purchase {
   .description {
     white-space: pre-line;
-    // oxen-navy
+    // quenero-navy
     color: #1f1c47;
   }
 
   .prices {
-    // oxen-navy
+    // quenero-navy
     margin-top: 20px;
     color: #1f1c47;
   }

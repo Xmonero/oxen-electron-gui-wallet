@@ -91,8 +91,7 @@ export default {
       this.renewing = true;
       // set the type such that we default to one year
       let renewRecord = {
-        ...record,
-        type: "lokinet_1y"
+        ...record
       };
       this.$refs.form.setRecord(renewRecord);
     },

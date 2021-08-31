@@ -1,22 +1,22 @@
-# Oxen Electron GUI Wallet
+# Quenero Electron GUI Wallet
 
 ### Introduction
 
-Oxen (formerly Loki) is a private cryptocurrency based on Monero. Oxen aims to provide a private data transmission layer using a second layer of Service Nodes.
-More information on the project can be found on the [website](https://oxen.io) and in the [whitepaper](https://loki.network/whitepaper). Oxen is an open source project, and we encourage contributions from anyone with something to offer.
+Quenero (formerly Loki) is a private cryptocurrency based on Monero. Quenero aims to provide a private data transmission layer using a second layer of Masternodes.
+More information on the project can be found on the [website](https://quenero.io) and in the [whitepaper](https://loki.network/whitepaper). Quenero is an open source project, and we encourage contributions from anyone with something to offer.
 
-![Oxen wallet image](./src-electron/icons/mrcuug.PNG)
+![Quenero wallet image](./src-electron/icons/mrcuug.PNG)
 
 ### About this project
 
-This is the new Electron GUI for Oxen. It is open source and completely free to use without restrictions, anyone may create an alternative implementation of the Oxen Electron GUI that uses the protocol and network in a compatible manner.
+This is the new Electron GUI for Quenero. It is open source and completely free to use without restrictions, anyone may create an alternative implementation of the Quenero Electron GUI that uses the protocol and network in a compatible manner.
 
 Please submit any changes as pull requests to the development branch, all changes are assessed in the development branch before being merged to master, release tags are considered stable builds for the GUI.
 
 #### Pre-requisites
 
-- Download latest [oxend](https://github.com/loki-project/loki-core/releases/latest)
-- Extract the oxend binaries to a folder
+- Download latest [quenerod](https://github.com/loki-project/loki-core/releases/latest)
+- Extract the quenerod binaries to a folder
 
 #### Commands
 
@@ -25,8 +25,8 @@ nvm use 14.11.0
 npm install -g @quasar/cli
 git clone https://github.com/loki-project/loki-electron-gui-wallet
 cd loki-electron-gui-wallet
-cp path_to_oxend_binaries/oxend bin/
-cp path_to_oxend_binaries/oxen-wallet-rpc bin/
+cp path_to_quenerod_binaries/quenerod bin/
+cp path_to_quenerod_binaries/quenero-wallet-rpc bin/
 npm install
 ```
 

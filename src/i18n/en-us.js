@@ -22,14 +22,14 @@ export default {
     generate: "GENERATE",
     import: "IMPORT",
     importWallet: "IMPORT WALLET | IMPORT WALLETS",
-    lns: "LOKI NAME SERVICE",
+    lns: "Quenero Name SERVICE",
     max: "MAX",
     min: "MIN",
     next: "NEXT",
     openWallet: "OPEN WALLET",
     purchase: "PURCHASE",
     receive: "RECEIVE",
-    registerServiceNode: "REGISTER SERVICE NODE",
+    registerServiceNode: "REGISTER MASTERNODE",
     renew: "RENEW",
     rescan: "RESCAN",
     restoreWallet: "RESTORE WALLET",
@@ -39,7 +39,7 @@ export default {
     selectWalletFile: "SELECT WALLET FILE",
     send: "SEND",
     sendCoins: "SEND COINS",
-    serviceNode: "SERVICE NODES",
+    serviceNode: "MASTERNODES",
     settings: "SETTINGS",
     showQRCode: "SHOW QR CODE",
     showTxDetails: "SHOW TX DETAILS",
@@ -122,8 +122,8 @@ export default {
       ok: "RENEW"
     },
     registerServiceNode: {
-      title: "Register service node",
-      message: "Do you want to register the service node?",
+      title: "Register masternode",
+      message: "Do you want to register the masternode?",
       ok: "REGISTER"
     },
     rescan: {
@@ -190,13 +190,13 @@ export default {
       ok: "UNLOCK"
     },
     unlockServiceNode: {
-      title: "Unlock service node",
+      title: "Unlock masternode",
       confirmTitle: "Confirm unlock",
-      message: "Do you want to unlock the service node?",
+      message: "Do you want to unlock the masternode?",
       ok: "UNLOCK"
     },
     unlockServiceNodeWarning: {
-      title: "Unlock service node warning",
+      title: "Unlock masternode warning",
       message:
         "Unlocking a partial stake in a node will also unstake for any other participants, if staking in a shared node its best to let the operator and other participants know you are unstaking.",
       ok: "CONTINUE"
@@ -225,7 +225,6 @@ export default {
     lnsType: "LNS RECORD TYPE",
     localDaemonIP: "LOCAL DAEMON IP",
     localDaemonPort: "LOCAL DAEMON PORT",
-    lokinetFullAddress: "LOKINET FULL ADDRESS",
     maxIncomingPeers: "MAX INCOMING PEERS",
     maxOutgoingPeers: "MAX OUTGOING PEERS",
     message: "MESSAGE",
@@ -243,8 +242,8 @@ export default {
     restoreFromBlockHeight: "RESTORE FROM BLOCK HEIGHT",
     restoreFromDate: "RESTORE FROM DATE",
     seedLanguage: "SEED LANGUAGE",
-    serviceNodeCommand: "SERVICE NODE COMMAND",
-    serviceNodeKey: "SERVICE NODE KEY",
+    serviceNodeCommand: "MASTERNODE COMMAND",
+    serviceNodeKey: "MASTERNODE KEY",
     sessionId: "SESSION ID",
     signature: "SIGNATURE",
     transactionId: "TRANSACTION ID",
@@ -278,20 +277,18 @@ export default {
     changePassword: "Change Password",
     copyAddress: "Copy address",
     copyBackupOwner: "Copy backup owner",
-    copyLokinetAddress: "Copy lokinet address",
-    copyLokinetName: "Copy lokinet name",
     copyName: "Copy name",
     copyOwner: "Copy owner",
     copyQR: "Copy QR code",
     copySeedWords: "Copy seed words",
     copySessionId: "Copy session ID",
     copySpendKey: "Copy spend key",
-    copyServiceNodeKey: "Copy service node key",
+    copyServiceNodeKey: "Copy masternode key",
     copyTransactionId: "Copy transaction ID",
     copyViewKey: "Copy view key",
     createNewWallet: "Create new wallet",
     deleteWallet: "Delete Wallet",
-    exit: "Exit Oxen GUI Wallet",
+    exit: "Exit Quenero GUI Wallet",
     importOldGUIWallet: "Import wallets from old GUI",
     manageKeyImages: "Manage Key Images",
     openWallet: "Open wallet",
@@ -320,15 +317,13 @@ export default {
         imported: "Key images imported"
       },
       lnsRecordUpdated: "LNS Record was successfully updated",
-      lokinetAddressCopied: "Full lokinet address copied",
-      lokinetNameCopied: "Lokinet name copied",
       passwordUpdated: "Password updated",
       namePurchased: "Name successfully purchased",
       nameRenewed: "Name successfully renewed",
       nameCopied: "Name copied to clipboard",
       ownerCopied: "Owner copied to clipboard",
       qrCopied: "QR code copied to clipboard",
-      registerServiceNodeSuccess: "Successfully registered service node",
+      registerServiceNodeSuccess: "Successfully registered masternode",
       sendSuccess: "Transaction successfully sent",
       serviceNodeInfoFilled: "Service node key and min amount filled",
       sessionIdCopied: "Session ID copied to clipboard",
@@ -353,7 +348,7 @@ export default {
       enterWalletName: "Enter a wallet name",
       enterName: "Enter a name",
       errorSavingItem: "Error saving {item}",
-      failedServiceNodeUnlock: "Failed to unlock service node",
+      failedServiceNodeUnlock: "Failed to unlock masternode",
       failedToSetLanguage: "Failed to set language: {lang}",
       failedWalletImport: "Failed to import wallet",
       failedWalletOpen: "Failed to open wallet. Please try again.",
@@ -377,7 +372,7 @@ export default {
       invalidRestoreHeight: "Invalid restore height",
       invalidSeedLength: "Invalid seed word length",
       invalidServiceNodeCommand:
-        "Please enter the service node registration command",
+        "Please enter the masternode registration command",
       invalidServiceNodeKey: "Service node key not valid",
       invalidSessionId: "Session ID not valid",
       invalidSignature: "Invalid signature",
@@ -402,7 +397,7 @@ export default {
     warnings: {
       noKeyImageExport: "No key images found to export",
       usingLocalNode: "Could not access remote node, switching to local only",
-      usingRemoteNode: "oxend not found, using remote node"
+      usingRemoteNode: "quenerod not found, using remote node"
     }
   },
   placeholders: {
@@ -412,11 +407,9 @@ export default {
     dataToSign: "Data you want to sign with your primary address's private key",
     filterTx: "Enter an ID, name, address or amount",
     hexCharacters: "{count} hexadecimal characters",
-    lnsName: "The name to purchase via Loki Name Service",
+    lnsName: "The name to purchase via Quenero Name Service",
     lnsBackupOwner: "The wallet address of the backup owner",
     lnsDecryptName: "A LNS name that belongs to you",
-    lokinetFullAddress:
-      "Full lokinet address to map LNS name to (without .loki)",
     mnemonicSeed: "25 (or 24) word mnemonic seed",
     pasteTransactionId: "Paste transaction ID",
     pasteTransactionProof: "Paste transaction proof",
@@ -424,7 +417,7 @@ export default {
       "Optional message against which the signature is signed",
     recipientWalletAddress: "Recipient's wallet address",
     selectAFile: "Please select a file",
-    sessionId: "The Session ID to link to Loki Name Service",
+    sessionId: "The Session ID to link to Quenero Name Service",
     signature: "Signature to verify",
     transactionNotes: "Additional notes to locally attach to the transaction",
     unsignedData: "The data as it should look before it was signed",
@@ -491,8 +484,6 @@ export default {
     expirationHeight: "Expiration height",
     lns: {
       sessionID: "Session ID",
-      lokinetName1Year: "Lokinet Name 1 year",
-      lokinetNameXYears: "Lokinet Name {years} years",
       prices: "LNS Prices:"
     },
     lnsPurchaseDescription:
@@ -500,11 +491,9 @@ export default {
     lnsDescription:
       "Here you can find all the LNS names owned by this wallet. Decrypting a record you own will return the name and value of that LNS record.",
     loadingSettings: "Loading settings",
-    oxenBalance: "Balance",
-    lokinetNameDescription:
-      "Purchase or update a name on Lokinet. If you purchase a name it may take a minute or two for it to show up in the list. To learn more about lokinet visit: ",
-    oxenUnlockedBalance: "Unlocked balance",
-    oxenUnlockedShort: "Unlocked",
+    queneroBalance: "Balance",
+    queneroUnlockedBalance: "Unlocked balance",
+    queneroUnlockedShort: "Unlocked",
     me: "Me",
     noTransactionsFound: "No transactions found",
     notes: "Notes",
@@ -534,13 +523,13 @@ export default {
     seedWords: "Seed words",
     selectLanguage: "Select language",
     serviceNodeContributionDescription:
-      "Staking contributes to the safety of the Oxen network. For your contribution, you earn OXEN. Once staked, you will have to wait either 15 or 30 days to have your OXEN unlocked, depending on if a stake was unlocked by a contributor or the node was deregistered. To learn more about staking, please visit the documentation on the",
+      "Staking contributes to the safety of the Quenero network. For your contribution, you earn QMR. Once staked, you will have to wait either 15 or 30 days to have your QMR unlocked, depending on if a stake was unlocked by a contributor or the node was deregistered. To learn more about staking, please visit the documentation on the",
     serviceNodeRegistrationDescription:
-      'Enter the {registerCommand} command produced by the daemon that is registering to become a Service Node using the "{prepareCommand}" command',
+      'Enter the {registerCommand} command produced by the daemon that is registering to become a Masternode using the "{prepareCommand}" command',
     serviceNodeStartStakingDescription:
       "To start staking, please visit the Staking tab",
     noServiceNodesCurrentlyAvailable:
-      "There are currently no service nodes available for contribution",
+      "There are currently no masternodes available for contribution",
     serviceNodeDetails: {
       contributors: "Contributors",
       lastRewardBlockHeight: "Last reward block height",
@@ -551,7 +540,7 @@ export default {
       registrationHeight: "Registration height",
       unlockHeight: "Unlock height",
       reserved: "Reserved",
-      serviceNodeKey: "Service Node Key",
+      serviceNodeKey: "Masternode Key",
       snKey: "SN Key",
       stakingRequirement: "Staking requirement",
       totalContributed: "Total contributed"
@@ -583,7 +572,7 @@ export default {
         pendingIncoming: "Pending incoming",
         pendingOutgoing: "Pending outgoing",
         miner: "Miner",
-        serviceNode: "Service Node",
+        serviceNode: "Masternode",
         governance: "Governance",
         stake: "Stake",
         failed: "Failed"
@@ -614,7 +603,6 @@ export default {
     currentlyStakedNodes: "Currently staked nodes",
     lnsRecordDetails: "LNS record details",
     lnsSessionRecords: "Session records",
-    lnsLokinetRecords: "Lokinet records",
     privateKeys: "Private keys",
     rescanWallet: "Rescan wallet",
     lns: {

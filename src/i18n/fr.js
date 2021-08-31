@@ -162,7 +162,7 @@ export default {
       ok: "DÉVERROUILLER"
     },
     unlockServiceNodeWarning: {
-      title: "Unlock service node warning",
+      title: "Unlock masternode warning",
       message:
         "Unlocking a partial stake in a node will also unstake for any other participants, if staking in a shared node its best to let the operator and other participants know you are unstaking.",
       ok: "CONTINUE"
@@ -205,7 +205,7 @@ export default {
     restoreFromDate: "RESTAURATION A PARTIR DE LA DATE",
     seedLanguage: "LANGAGE SEED",
     serviceNodeCommand: "COMMANDE DE NŒUD DE SERVICE",
-    serviceNodeKey: "CLÉ DE SERVICE NODE",
+    serviceNodeKey: "CLÉ DE MASTERNODE",
     signature: "SIGNATURE",
     transactionId: "TRANSACTION ID",
     walletFile: "DOSSIER DU PORTEFEUILLE",
@@ -239,12 +239,12 @@ export default {
     copyQR: "Copier le QR code",
     copySeedWords: "Copier les mots clés",
     copySpendKey: "Copier la clé de dépense",
-    copyServiceNodeKey: "Copy service node key",
+    copyServiceNodeKey: "Copy masternode key",
     copyTransactionId: "Copier l'ID de transaction",
     copyViewKey: "Copier la clé de visibilité",
     createNewWallet: "Créer un nouveau portefeuille",
     deleteWallet: "Supprimer le portefeuille",
-    exit: "Quitter le portefeuille Oxen GUI",
+    exit: "Quitter le portefeuille Quenero GUI",
     importOldGUIWallet: "Importer le portefeuille depuis l’ancien GUI",
     manageKeyImages: "Gérer les images clés",
     openWallet: "Ouvrir le portefeuille",
@@ -334,7 +334,7 @@ export default {
       noKeyImageExport: "Aucune clé image n'a été trouvé pour l'export",
       usingLocalNode:
         "Impossible d'accéder au nœud distant, basculement en local uniquement",
-      usingRemoteNode: "oxend introuvable, utilisation du nœud distant"
+      usingRemoteNode: "quenerod introuvable, utilisation du nœud distant"
     }
   },
   placeholders: {
@@ -410,9 +410,9 @@ export default {
     destinationUnknown: "Destination inconnue",
     editAddressBookEntry: "Modifiez l'entrée du carnet d'adresses",
     loadingSettings: "Chargement des réglages",
-    oxenBalance: "Solde",
-    oxenUnlockedBalance: "Solde débloqué",
-    oxenUnlockedShort: "Débloqué",
+    queneroBalance: "Solde",
+    queneroUnlockedBalance: "Solde débloqué",
+    queneroUnlockedShort: "Débloqué",
     noTransactionsFound: "Aucune transaction trouvée",
     notes: "Notes",
     numberOfUnspentOutputs: "Nombre de sorties non dépensées",

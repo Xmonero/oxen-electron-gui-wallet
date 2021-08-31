@@ -91,7 +91,7 @@ export default [
       },
       {
         path: "servicenode",
-        component: () => import("pages/wallet/service-node")
+        component: () => import("pages/wallet/masternode")
       },
       {
         path: "lns",

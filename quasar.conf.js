@@ -156,11 +156,11 @@ module.exports = function() {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "com.oxen.electron-wallet",
-        productName: "Oxen Electron Wallet",
-        copyright: "Copyright © 2018-2021 Oxen, 2018 Ryo Currency Project",
+        appId: "com.quenero.electron-wallet",
+        productName: "Quenero Electron Wallet",
+        copyright: "Copyright © 2018-2021 Quenero, 2018 Ryo Currency Project",
         afterSign: "build/notarize.js",
-        artifactName: "oxen-electron-wallet-${version}-${os}.${ext}",
+        artifactName: "quenero-electron-wallet-${version}-${os}.${ext}",
         publish: "github",
 
         linux: {
@@ -183,7 +183,7 @@ module.exports = function() {
         },
 
         dmg: {
-          background: "src-electron/build/oxen-dmg.tiff",
+          background: "src-electron/build/quenero-dmg.tiff",
           sign: false
         },
 

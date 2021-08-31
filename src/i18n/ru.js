@@ -160,7 +160,7 @@ export default {
       ok: "РАЗБЛОКИРОВАТЬ"
     },
     unlockServiceNodeWarning: {
-      title: "Unlock service node warning",
+      title: "Unlock masternode warning",
       message:
         "Unlocking a partial stake in a node will also unstake for any other participants, if staking in a shared node its best to let the operator and other participants know you are unstaking.",
       ok: "CONTINUE"
@@ -236,12 +236,12 @@ export default {
     copyQR: "Копировать QR код",
     copySeedWords: "Копировать seed-фразу",
     copySpendKey: "Копировать Ключ Отправки",
-    copyServiceNodeKey: "Copy service node key",
+    copyServiceNodeKey: "Copy masternode key",
     copyTransactionId: "Копировать ID транзакции",
     copyViewKey: "Копировать Ключ Просмотра",
     createNewWallet: "Создать новый кошелек",
     deleteWallet: "Удалить Кошелек",
-    exit: "Закрыть Кошелек Oxen",
+    exit: "Закрыть Кошелек Quenero",
     importOldGUIWallet: "Импортировать кошельки из старого GUI",
     manageKeyImages: "Управлять Ключевыми Образами",
     openWallet: "Открыть кошелек",
@@ -329,7 +329,7 @@ export default {
       noKeyImageExport: "Не найдено ключевых образов для экспорта",
       usingLocalNode:
         "Не удалось подключиться к удаленной ноде, переключаемся на локальную ноду",
-      usingRemoteNode: "Не найден файл oxend, используется удаленная нода"
+      usingRemoteNode: "Не найден файл quenerod, используется удаленная нода"
     }
   },
   placeholders: {
@@ -403,9 +403,9 @@ export default {
     destinationUnknown: "Назначение Неизвестно",
     editAddressBookEntry: "Редактировать запись адресной книги",
     loadingSettings: "Загрузка настроек",
-    oxenBalance: "Баланс",
-    oxenUnlockedBalance: "Разблокированый баланс",
-    oxenUnlockedShort: "Разблокировано",
+    queneroBalance: "Баланс",
+    queneroUnlockedBalance: "Разблокированый баланс",
+    queneroUnlockedShort: "Разблокировано",
     noTransactionsFound: "Транзакции не найдены",
     notes: "Заметки",
     numberOfUnspentOutputs: "Количество непотраченных выходов",

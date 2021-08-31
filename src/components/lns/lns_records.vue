@@ -1,7 +1,7 @@
 <template>
   <div class="lns-record-list">
     <div v-if="needsDecryption" class="decrypt row justify-between items-end">
-      <OxenField
+      <QueneroField
         :label="$t('fieldLabels.decryptRecord')"
         :disable="decrypting"
         :error="$v.name.$error"
@@ -15,7 +15,7 @@
           :disable="decrypting"
           @blur="$v.name.$touch"
         />
-      </OxenField>
+      </QueneroField>
       <div class="btn-wrapper q-ml-md row items-center">
         <q-btn
           color="primary"
@@ -31,19 +31,7 @@
       }}</span>
       <LNSRecordList
         :record-list="session_records"
-        :is-lokinet="false"
         @onUpdate="onUpdate"
-      />
-    </div>
-    <div v-if="lokinet_records.length > 0" class="records-group">
-      <span class="record-type-title">{{
-        $t("titles.lnsLokinetRecords")
-      }}</span>
-      <LNSRecordList
-        :record-list="lokinet_records"
-        :is-lokinet="true"
-        @onUpdate="onUpdate"
-        @onRenew="onRenew"
       />
     </div>
   </div>
@@ -51,14 +39,14 @@
 
 <script>
 import { mapState } from "vuex";
-import OxenField from "components/oxen_field";
+import QueneroField from "components/quenero_field";
 import { session_name_or_lokinet_name } from "src/validators/common";
 import LNSRecordList from "./lns_record_list";
 
 export default {
   name: "LNSRecords",
   components: {
-    OxenField,
+    QueneroField,
     LNSRecordList
   },
   data() {
@@ -81,11 +69,8 @@ export default {
     session_records(state) {
       return this.records_of_type(state, "session");
     },
-    lokinet_records(state) {
-      return this.records_of_type(state, "lokinet");
-    },
     needsDecryption() {
-      const records = [...this.lokinet_records, ...this.session_records];
+      const records = [...this.session_records];
       return records.find(r => this.isLocked(r));
     }
   }),
@@ -167,10 +152,6 @@ export default {
       });
 
       let type = "session";
-      // session names cannot have a "." so this is safe
-      if (name.endsWith(".loki")) {
-        type = "lokinet";
-      }
 
       this.$gateway.send("wallet", "decrypt_record", {
         name,
@@ -197,7 +178,7 @@ export default {
     cursor: default;
   }
 
-  .oxen-field {
+  .quenero-field {
     flex: 1;
   }
 

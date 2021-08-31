@@ -37,25 +37,18 @@ export class Backend {
     let configDir;
     let legacyLokiConfigDir;
     if (os.platform() === "win32") {
-      configDir = "C:\\ProgramData\\oxen";
-      legacyLokiConfigDir = "C:\\ProgramData\\loki\\";
-      this.wallet_dir = `${os.homedir()}\\Documents\\Oxen`;
+      configDir = "C:\\ProgramData\\quenero";
+      this.wallet_dir = `${os.homedir()}\\Documents\\Quenero`;
     } else {
-      configDir = path.join(os.homedir(), ".oxen");
-      legacyLokiConfigDir = path.join(os.homedir(), ".loki/");
-      this.wallet_dir = path.join(os.homedir(), "Oxen");
+      configDir = path.join(os.homedir(), ".quenero");
+      this.wallet_dir = path.join(os.homedir(), "Quenero");
     }
 
-    // if the user has used loki before, just keep the same stuff
-    if (fs.existsSync(legacyLokiConfigDir)) {
-      this.config_dir = legacyLokiConfigDir;
-    } else {
-      // create the new, Oxen location
+      // create the Quenero location
       this.config_dir = configDir;
       if (!fs.existsSync(configDir)) {
         fs.mkdirpSync(configDir);
       }
-    }
 
     if (!fs.existsSync(path.join(this.config_dir, "gui"))) {
       fs.mkdirpSync(path.join(this.config_dir, "gui"));
@@ -66,9 +59,9 @@ export class Backend {
     const daemon = {
       type: "remote",
       p2p_bind_ip: "0.0.0.0",
-      p2p_bind_port: 22022,
+      p2p_bind_port:19990,
       rpc_bind_ip: "127.0.0.1",
-      rpc_bind_port: 22023,
+      rpc_bind_port: 19991,
       zmq_rpc_bind_ip: "127.0.0.1",
       out_peers: -1,
       in_peers: -1,
@@ -80,20 +73,20 @@ export class Backend {
     const daemons = {
       mainnet: {
         ...daemon,
-        remote_host: "imaginary.stream",
-        remote_port: 22023
+        remote_host: "daemon.quenero.tech",
+        remote_port: 19991
       },
       stagenet: {
         ...daemon,
         type: "local",
-        p2p_bind_port: 38153,
-        rpc_bind_port: 38154
+        p2p_bind_port: 39990,
+        rpc_bind_port: 39991
       },
       testnet: {
         ...daemon,
         type: "local",
-        p2p_bind_port: 38156,
-        rpc_bind_port: 38157
+        p2p_bind_port: 29990,
+        rpc_bind_port: 29991
       }
     };
 
@@ -122,20 +115,20 @@ export class Backend {
 
     this.remotes = [
       {
-        host: "imaginary.stream",
-        port: "22023"
+        host: "daemon.quenero.tech",
+        port: "19991"
       },
       {
-        host: "nodes.hashvault.pro",
-        port: "22023"
+        host: "nodes.quenero.tech",
+        port: "19991"
       },
       {
-        host: "explorer.loki.aussie-pools.com",
+        host: "blocks.quenero.tech",
         port: "18081"
       },
       {
-        host: "public.loki.foundation",
-        port: "22023"
+        host: "public.quenero.tech",
+        port: "19991"
       }
     ];
 
@@ -287,8 +280,8 @@ export class Backend {
         let path = null;
         if (params.type === "tx") {
           path = "tx";
-        } else if (params.type === "service_node") {
-          path = "service_node";
+        } else if (params.type === "masternode") {
+          path = "masternode";
         }
 
         if (path) {

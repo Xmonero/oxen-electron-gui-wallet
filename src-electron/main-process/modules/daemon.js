@@ -21,33 +21,33 @@ export class Daemon {
 
     // Settings for timestamp to height conversion
     // These are initial values used to calculate the height
-    this.PIVOT_BLOCK_HEIGHT = 119681;
-    this.PIVOT_BLOCK_TIMESTAMP = 1539676273;
+    this.PIVOT_BLOCK_HEIGHT = 1376;
+    this.PIVOT_BLOCK_TIMESTAMP = 1630446315;
     this.PIVOT_BLOCK_TIME = 120;
   }
 
   checkVersion() {
     return new Promise(resolve => {
       if (process.platform === "win32") {
-        let oxend_path = path.join(__ryo_bin, "oxend.exe");
-        let oxend_version_cmd = `"${oxend_path}" --version`;
-        if (!fs.existsSync(oxend_path)) {
+        let quenerod_path = path.join(__ryo_bin, "quenerod.exe");
+        let quenerod_version_cmd = `"${quenerod_path}" --version`;
+        if (!fs.existsSync(quenerod_path)) {
           resolve(false);
         }
-        child_process.exec(oxend_version_cmd, (error, stdout) => {
+        child_process.exec(quenerod_version_cmd, (error, stdout) => {
           if (error) {
             resolve(false);
           }
           resolve(stdout);
         });
       } else {
-        let oxend_path = path.join(__ryo_bin, "oxend");
-        let oxend_version_cmd = `"${oxend_path}" --version`;
-        if (!fs.existsSync(oxend_path)) {
+        let quenerod_path = path.join(__ryo_bin, "quenerod");
+        let quenerod_version_cmd = `"${quenerod_path}" --version`;
+        if (!fs.existsSync(quenerod_path)) {
           resolve(false);
         }
         child_process.exec(
-          oxend_version_cmd,
+          quenerod_version_cmd,
           { detached: true },
           (error, stdout) => {
             if (error) {
@@ -148,7 +148,7 @@ export class Daemon {
         args.push("--stagenet");
       }
 
-      args.push("--log-file", path.join(dirs[net_type], "logs", "oxend.log"));
+      args.push("--log-file", path.join(dirs[net_type], "logs", "quenerod.log"));
       if (daemon.rpc_bind_ip !== "127.0.0.1") {
         args.push("--confirm-external-bind");
       }
@@ -173,12 +173,12 @@ export class Daemon {
           if (status === "closed") {
             if (process.platform === "win32") {
               this.daemonProcess = child_process.spawn(
-                path.join(__ryo_bin, "oxend.exe"),
+                path.join(__ryo_bin, "quenerod.exe"),
                 args
               );
             } else {
               this.daemonProcess = child_process.spawn(
-                path.join(__ryo_bin, "oxend"),
+                path.join(__ryo_bin, "quenerod"),
                 args,
                 {
                   detached: true
@@ -468,19 +468,19 @@ export class Daemon {
   }
 
   updateServiceNodes() {
-    const service_nodes = {
+    const masternodes = {
       fetching: true
     };
-    this.sendGateway("set_daemon_data", { service_nodes });
-    this.getRPC("service_nodes").then(data => {
+    this.sendGateway("set_daemon_data", { masternodes });
+    this.getRPC("masternodes").then(data => {
       if (!data.hasOwnProperty("result")) return;
-      const nodes = data.result.service_node_states;
+      const nodes = data.result.masternode_states;
 
-      const service_nodes = {
+      const masternodes = {
         nodes,
         fetching: false
       };
-      this.sendGateway("set_daemon_data", { service_nodes });
+      this.sendGateway("set_daemon_data", { masternodes });
     });
   }
 
@@ -519,8 +519,7 @@ export class Daemon {
         {
           name_hash: nameHash,
           // 0 = session
-          // 2 = lokinet
-          types: [0, 2]
+          types: [0]
         }
       ]
     };
@@ -538,8 +537,7 @@ export class Daemon {
     return (records || []).map(record => {
       // Record type is in uint16 format
       // Session = 0
-      // Lokinet = 2
-      let type = "lokinet";
+      let type = "session";
       if (record.type === 0) {
         type = "session";
       }

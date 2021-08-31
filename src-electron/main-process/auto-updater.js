@@ -99,8 +99,8 @@ async function showUpdateDialog(mainWindow) {
   const options = {
     type: "info",
     buttons: ["Restart Wallet", "Later"],
-    title: "Oxen Electron Wallet update available",
-    message: "There is a new version of Oxen Electron Wallet available.",
+    title: "Quenero Electron Wallet update available",
+    message: "There is a new version of Quenero Electron Wallet available.",
     detail: "Press Restart Wallet to apply the update",
     defaultId: LATER_BUTTON,
     cancelId: RESTART_BUTTON
@@ -118,7 +118,7 @@ async function showCannotUpdateDialog(mainWindow) {
     buttons: ["Ok"],
     title: "Cannot update",
     message:
-      "Oxen Electron Wallet failed to update but there is a new version available. Please go to https://oxen.io/ and install the new version manually."
+      "Quenero Electron Wallet failed to update but there is a new version available. Please go to https://quenero.tech/ and install the new version manually."
   };
 
   return new Promise(resolve => {

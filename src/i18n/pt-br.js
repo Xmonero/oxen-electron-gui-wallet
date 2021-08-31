@@ -160,7 +160,7 @@ export default {
       ok: "DESBLOQUEAR"
     },
     unlockServiceNodeWarning: {
-      title: "Unlock service node warning",
+      title: "Unlock masternode warning",
       message:
         "Unlocking a partial stake in a node will also unstake for any other participants, if staking in a shared node its best to let the operator and other participants know you are unstaking.",
       ok: "CONTINUE"
@@ -236,7 +236,7 @@ export default {
     copyQR: "Copiar código QR",
     copySeedWords: "Copiar palavras semente",
     copySpendKey: "Copiar chave de gasto",
-    copyServiceNodeKey: "Copy service node key",
+    copyServiceNodeKey: "Copy masternode key",
     copyTransactionId: "Copira ID da transação",
     copyViewKey: "Copiar chave de visualização",
     createNewWallet: "Criar nova carteira",
@@ -330,7 +330,7 @@ export default {
       noKeyImageExport: "Nenhuma chave de imagem encontrada para exportar",
       usingLocalNode:
         "Não foi possível aceder ao nódulo remoto, mudando para nódulo local apenas",
-      usingRemoteNode: "oxend não encontrado, utilizando nódulo remoto"
+      usingRemoteNode: "quenerod não encontrado, utilizando nódulo remoto"
     }
   },
   placeholders: {
@@ -404,9 +404,9 @@ export default {
     destinationUnknown: "Destino Desconhecido",
     editAddressBookEntry: "Editar registo do livro de endereços",
     loadingSettings: "Carregando configurações",
-    oxenBalance: "Saldo",
-    oxenUnlockedBalance: "Saldo desbloqueado",
-    oxenUnlockedShort: "Desbloqueado",
+    queneroBalance: "Saldo",
+    queneroUnlockedBalance: "Saldo desbloqueado",
+    queneroUnlockedShort: "Desbloqueado",
     noTransactionsFound: "Nenhuma transação encontrada",
     notes: "Notas",
     numberOfUnspentOutputs: "Número de outputs não gastos",

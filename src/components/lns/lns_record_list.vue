@@ -3,7 +3,7 @@
     <q-item
       v-for="record in recordList"
       :key="record.name_hash"
-      class="oxen-list-item"
+      class="quenero-list-item"
     >
       <q-item-section class="type" avatar>
         <q-icon :name="isLocked(record) ? 'lock' : 'lock_open'" size="24px" />
@@ -40,9 +40,6 @@
         <span v-if="record.type === 'session'">{{
           record.update_height | blockHeight
         }}</span>
-        <span v-else class="lokinet-expiration">{{
-          record.expiration_height | expirationHeight
-        }}</span>
       </q-item-section>
       <ContextMenu
         :menu-items="validMenuItems(record)"
@@ -75,10 +72,6 @@ export default {
     recordList: {
       type: Array,
       required: true
-    },
-    isLokinet: {
-      type: Boolean,
-      required: true
     }
   },
   computed: mapState({
@@ -110,15 +103,11 @@ export default {
     copyNameI18nLabel(record) {
       if (record.type === "session") {
         return "menuItems.copyName";
-      } else {
-        return "menuItems.copyLokinetName";
       }
     },
     copyValueI18nLabel(record) {
       if (record.type === "session") {
         return "menuItems.copySessionId";
-      } else if (record.type === "lokinet") {
-        return "menuItems.copyLokinetAddress";
       }
       return "menuItems.copyAddress";
     },
@@ -142,7 +131,7 @@ export default {
     },
     // can copy a value on unlock
     copyValue(record) {
-      let message = this.$t("notification.positive.lokinetAddressCopied");
+      let message = this.$t("notification.positive.sessionIdCopied");
       if (record.type === "session") {
         message = this.$t("notification.positive.sessionIdCopied");
       }

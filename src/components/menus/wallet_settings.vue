@@ -241,7 +241,7 @@
           </div>
 
           <template v-if="modals.key_image.type == 'Export'">
-            <OxenField
+            <QueneroField
               class="q-mt-lg"
               :label="$t('fieldLabels.keyImages.exportDirectory')"
               disable-hover
@@ -264,10 +264,10 @@
               <q-btn color="primary" @click="selectKeyImageExportPath">{{
                 $t("buttons.browse")
               }}</q-btn>
-            </OxenField>
+            </QueneroField>
           </template>
           <template v-if="modals.key_image.type == 'Import'">
-            <OxenField
+            <QueneroField
               class="q-mt-lg"
               :label="$t('fieldLabels.keyImages.importFile')"
               disable-hover
@@ -288,7 +288,7 @@
               <q-btn color="primary" @click="selectKeyImageImportPath">{{
                 $t("buttons.browse")
               }}</q-btn>
-            </OxenField>
+            </QueneroField>
           </template>
 
           <div class="q-mt-lg text-right">
@@ -357,12 +357,12 @@
 const { clipboard } = require("electron");
 import { mapState } from "vuex";
 import WalletPassword from "src/mixins/wallet_password";
-import OxenField from "components/oxen_field";
+import QueneroField from "components/quenero_field";
 
 export default {
   name: "WalletSettings",
   components: {
-    OxenField
+    QueneroField
   },
   mixins: [WalletPassword],
   data() {
@@ -755,7 +755,7 @@ export default {
   min-width: 400px;
   width: 45vw;
 
-  .oxen-field {
+  .quenero-field {
     flex: 1;
   }
 }
